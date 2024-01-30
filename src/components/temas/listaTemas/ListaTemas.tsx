@@ -5,7 +5,8 @@ import { useContext, useEffect, useState } from 'react';
 import Tema from '../../../models/Tema';
 import { AuthContext } from '../../../contexts/AuthContext';
 import { buscar } from '../../../services/Service';
-import { DNA } from 'react-loader-spinner';
+import {  ThreeDots } from 'react-loader-spinner';
+import { ToastAlerta } from '../../../util/ToastAlert';
 
 function ListaTemas() {
 
@@ -24,7 +25,7 @@ function ListaTemas() {
             })
         } catch (error: any) {
             if (error.toString().includes('403')) {
-                alert('O token expirou!')
+                ToastAlerta('O token expirou!',"info")
                 handleLogout()
             }
 
@@ -32,7 +33,7 @@ function ListaTemas() {
     }
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa fazer o login novamente. Sua sessão encerrou.')
+        ToastAlerta('Você precisa fazer o login novamente. Sua sessão encerrou.', "info")
             navigate('/login')
         }
     }, [token])
@@ -40,25 +41,31 @@ function ListaTemas() {
     useEffect(() => {
             buscarTemas()
     }, [temas.length])
+
+    console.log (temas)
+    
     return (
         <>
-            {temas.length === 0 && (
-                <DNA
+            {temas.length === 0 && ( 
+                <ThreeDots
                 visible={true}
-                height="200"
-                width="200"
-                ariaLabel="dna-loading"
+                height="80"
+                width="80"
+                color="#134E4A"
+                radius="9"
+                ariaLabel="three-dots-loading"
                 wrapperStyle={{}}
-                wrapperClass="dna-wrapper mx-auto"
+                wrapperClass="flex justify-center m-1"
+                
             />
             )}
             <div className="flex justify-center w-full my-4">
                 <div className="container flex flex-col">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <>
-                            {temas.map((tema ) => (
+                            { temas.map((tema ) => (
                                 <>
-                                    <CardTemas key={tema.id} tema={tema} />
+                                    <CardTemas key={tema.id}  tema={tema} />
                                 </>
                             ))}
                         </>
