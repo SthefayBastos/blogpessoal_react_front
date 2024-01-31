@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import Tema from "../../../models/Tema";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
 import { RotatingLines } from "react-loader-spinner";
+import { ToastAlerta } from "../../../util/ToastAlert";
 
 function FormularioTema() {
 
@@ -24,7 +25,7 @@ function FormularioTema() {
             })
         } catch (error: any) {
             if (error.toString().includes('403')) {
-                toastalerta('O token Expirou!')
+                ToastAlerta('O token Expirou!',"info")
                 handleLogout()
             }
         }
@@ -32,7 +33,7 @@ function FormularioTema() {
 
     useEffect(() => {
         if (token === '') {
-            toastalerta('Você precisa estar logado!')
+            ToastAlerta('Você precisa estar logado!',"info")
             navigate('/login')
         }
     }, [token])
@@ -63,13 +64,13 @@ function FormularioTema() {
                 await atualizar(`/temas`, tema, setTema, {
                     headers: { 'Authorization': token }
                 })
-                toastalerta('O Tema foi atualizado com sucesso!')
+                ToastAlerta('O Tema foi atualizado com sucesso!', "sucesso")
             } catch (error: any) {
                 if (error.toString().includes('403')) {
-                    toastalerta('O Token Expirou!')
+                    ToastAlerta('O Token Expirou!', "info")
                     handleLogout();
                 } else {
-                    toastalerta('Erro ao atualizar o tema.')
+                   ToastAlerta('Erro ao atualizar o tema.' , "erro")
                 }
 
             }
@@ -78,13 +79,13 @@ function FormularioTema() {
                 await cadastrar(`/temas`, tema, setTema, {
                     headers: { 'Authorization': token }
                 })
-                toastalerta('O Tema foi cadastrado com sucesso!')
+                ToastAlerta('O Tema foi cadastrado com sucesso!',"sucesso")
             } catch (error: any) {
                 if (error.toString().includes('403')) {
-                    toastalerta('O Token Expirou!')
+                    ToastAlerta('O Token Expirou!',"info")
                     handleLogout();
                 } else {
-                    toastalerta('Erro ao cadastrar o tema.')
+                    ToastAlerta('Erro ao cadastrar o tema.',"erro")
                 }
 
             }
