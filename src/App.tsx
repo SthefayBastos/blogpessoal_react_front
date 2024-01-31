@@ -18,7 +18,8 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import Perfil from './assets/pages/perfil/Perfil'
-import Navbar from './components/navbar/Navbar'
+
+//import Navbar from './components/navbar/Navbar'
 
 
 
@@ -30,7 +31,7 @@ function App() {
       <AuthProvider>
         <ToastContainer/>
         <BrowserRouter>
-          <Navbar />
+          {/* <Navbar /> */}
           <div className="min-h-[80vh]">
             <Routes>
               <Route path="/" element={<Login />} />
