@@ -7,7 +7,7 @@ import { AuthProvider } from './contexts/AuthContext'
 import Home from './assets/pages/home/Home'
 import Login from './assets/pages/login/Login'
 import Cadastro from './assets/pages/cadastro/Cadastro'
-import Navbar from './components/navBar/Navbar'
+
 import ListaTemas from './components/temas/listaTemas/ListaTemas';
 import FormularioTema from './components/temas/formularioTemas/FormularioTema'
 import DeletarTema from './components/temas/deletarTema/DeletarTema'
@@ -17,6 +17,7 @@ import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPosta
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Perfil from './assets/pages/perfil/Perfil'
+import Navbar from './components/navBar/Navbar'
 
 
 
