@@ -47,7 +47,7 @@ function App() {
               <Route path="/perfil" element={<Perfil />} />
             </Routes>
           </div>
-          <Footer />
+          <Footer/>
         </BrowserRouter>
       </AuthProvider>
     </>
